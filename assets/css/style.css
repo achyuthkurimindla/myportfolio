@@ -11,6 +11,10 @@
 --------------------------------------------------------------*/
 
 /* custom changes for desktop only */
+.download-button[disabled] {
+  cursor: not-allowed;
+}
+
 @media(max-width:1199px){
   .section-title {
     padding-top: 20px;
