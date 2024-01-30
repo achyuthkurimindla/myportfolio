@@ -40,6 +40,59 @@
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
   }
+  
+
+  // calculate date dynamically
+  function calculateExperience(startDate){
+    const currentDate = new Date()
+    const diffInMilliseconds = currentDate - startDate;
+    const yearsExperience = diffInMilliseconds / (365 * 24 * 60 * 60 * 1000);
+    return yearsExperience.toFixed(1);
+  }
+
+  function calculateAge(myBday){
+    const currentDate = new Date()
+    const birthDate = new Date(myBday);
+    let age = currentDate.getFullYear() - birthDate.getFullYear()
+    if (
+      currentDate.getMonth() < birthDate.getMonth() ||
+      (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+   return age
+  }
+
+  function calculateCurrentExp(joiningDate){
+    const currentDate = new Date()
+    const diffInMilliseconds = currentDate - joiningDate;
+    const yearsExperience = diffInMilliseconds / (365 * 24 * 60 * 60 * 1000);
+
+    const years = Math.floor(yearsExperience);
+    const months = Math.ceil((yearsExperience % 1) * 12);
+    console.log(years)
+    console.log(months)
+
+    if (years === 0) {
+      return `(${months} Months)`;
+    } else {
+      return `(${years} Yr ${months} Months)`;
+    }
+    // return `(${yearsExperience.toFixed(1)} years)`
+    
+  }
+  const startDate = new Date('2022-06-01'); //yyyy-mm-dd
+  document.getElementById('experienceSpan1').innerText = calculateExperience(startDate);
+  document.getElementById('experienceSpan2').innerText = calculateExperience(startDate);
+  document.getElementById('experienceSpan3').innerText = calculateExperience(startDate);
+  // document.getElementById('experienceSpan4').innerText = calculateExperience(startDate);
+
+  
+  const myBday = new Date('1998-05-12')
+  document.getElementById('ageCalc').innerText = calculateAge(myBday);
+
+  const joiningDate = new Date('2023-09-01')
+  document.getElementById('currentExp').innerText = calculateCurrentExp(joiningDate);
 
   /**
    * Navbar links active state on scroll
